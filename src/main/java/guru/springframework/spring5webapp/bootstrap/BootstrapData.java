@@ -25,6 +25,7 @@ public class BootstrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+
         Author eric = Author.builder()
                 .firstName("Eric")
                 .lastName("Evans")
@@ -67,8 +68,6 @@ public class BootstrapData implements CommandLineRunner {
 
         authorRepository.save(rod);
         bookRepository.save(noEJB);
-//        pub.getBooks().add(noEJB);
-//        publisherRepository.save(pub);
 
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Books: " + bookRepository.count());
