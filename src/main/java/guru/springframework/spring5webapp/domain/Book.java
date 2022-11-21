@@ -1,10 +1,20 @@
 package guru.springframework.spring5webapp.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+
+@Builder
 @Entity
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor
 public class Book {
 
     @Id
@@ -12,19 +22,13 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+    @Builder.Default
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 
 
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
 
-    public Book() {
-    }
-    public Book(String title, String isbn, Set<Author> authors) {
-        this.title = title;
-        this.isbn = isbn;
-        this.authors = authors;
-    }
 
     public Book(String title, String isbn) {
         this.title = title;
